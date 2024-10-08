@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Landing from './pages/Landing'
+import Dashboard from './pages/Dashboard'
 import Error from './pages/Error'
 
 export default function Router() {
@@ -7,6 +8,10 @@ export default function Router() {
     {
       path: '/',
       element: <Landing />,
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard />,
     },
     {
       path: '*',
