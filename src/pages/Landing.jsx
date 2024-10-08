@@ -62,22 +62,22 @@ export default function Landing() {
   return (
     <div className='landing'>
       <div className='hero'>
-        <h1>Get your next big ideas</h1>
-        <p>
+        <h1 className='tracking-in-expand'>Get your next big ideas</h1>
+        <p className='scale-in-center'>
           Our platform is your treasure trove for fresh, innovative concepts.
           Discover the inspiration you need to fuel your next big project. Start
           exploring today and let your creativity soar.
         </p>
         <div className='buttons'>
           <button
-            className='cta'
+            className='cta scale-in-center'
             onClick={() => signUpDialogRef.current.showModal()}
           >
             Sign Up
           </button>
 
           <button
-            className='cta'
+            className='cta scale-in-center'
             onClick={() => signInDialogRef.current.showModal()}
           >
             Sign in
@@ -85,7 +85,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <dialog id='signup' ref={signUpDialogRef}>
+      <dialog id='signup' ref={signUpDialogRef} className='slide-in-top'>
         <form onSubmit={handleSignUpFormSubmit}>
           <div className='formControl'>
             <label htmlFor='signUpEmail'>Email:*</label>
@@ -125,7 +125,7 @@ export default function Landing() {
         </form>
       </dialog>
 
-      <dialog id='signin' ref={signInDialogRef}>
+      <dialog id='signin' ref={signInDialogRef} className='slide-in-top'>
         <form onSubmit={handleSignInFormSubmit}>
           <div className='formControl'>
             <label htmlFor='signInEmail'>Email:</label>
