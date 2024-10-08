@@ -1,0 +1,47 @@
+.footer {
+  padding: 20px;
+
+  .top {
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        strong {
+          display: block;
+          margin-top: 15px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    text-align: center;
+  }
+}
+
+@media (min-width: 600px) {
+  .footer {
+    padding: 20px 40px;
+    .top {
+      display: flex;
+      justify-content: space-evenly;
+
+      .left,
+      .middle,
+      .right {
+        flex: 1;
+      }
+
+      .middle {
+        display: flex;
+
+        ul {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import '../styles/Landing.css'
+import Footer from '../components/Footer'
 
 export default function Landing() {
   return (
@@ -15,6 +16,7 @@ export default function Landing() {
           <button className='cta'>Sign in</button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
