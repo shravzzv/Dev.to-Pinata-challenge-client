@@ -1,0 +1,67 @@
+.landing {
+  .hero {
+    padding: 20px;
+    background-color: black;
+    background-image: url(./images/heroBG.webp);
+    background-size: cover;
+    background-position: center;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      button {
+        border-radius: 12px;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .hero,
+  section {
+    min-height: 100vh;
+
+    .content {
+      padding: 20px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .landing {
+    .hero {
+      h1 {
+        font-size: 4rem;
+      }
+
+      p {
+        max-width: 700px;
+      }
+
+      .buttons {
+        button {
+          transition: transform 300ms ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
