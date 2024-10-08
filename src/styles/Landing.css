@@ -40,6 +40,22 @@
       padding: 20px;
     }
   }
+
+  dialog {
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+
+      button {
+        border-radius: 12px;
+        padding: 10px 15px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 @media (min-width: 600px) {

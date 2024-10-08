@@ -96,6 +96,7 @@ export default function Landing() {
               autoComplete='on'
               value={signUpFormData.email}
               onChange={handleSignUpFormDataChange}
+              required
             />
           </div>
 
@@ -107,6 +108,8 @@ export default function Landing() {
               id='signUpPassword'
               value={signUpFormData.password}
               onChange={handleSignUpFormDataChange}
+              required
+              minLength={8}
             />
           </div>
 
@@ -133,6 +136,7 @@ export default function Landing() {
               autoComplete='on'
               value={signInFormData.email}
               onChange={handleSignInFormDataChange}
+              required
             />
           </div>
 
@@ -144,6 +148,8 @@ export default function Landing() {
               id='signInPassword'
               value={signInFormData.password}
               onChange={handleSignInFormDataChange}
+              required
+              minLength={8}
             />
           </div>
 

@@ -19,3 +19,27 @@ body {
 img {
   max-width: 100%;
 }
+
+dialog {
+  border-radius: 12px;
+  padding: 20px;
+  background-color: var(--surface);
+  color: inherit;
+}
+
+form {
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    background-color: var(--surface-container-highest);
+    color: inherit;
+    border: none;
+  }
+}
