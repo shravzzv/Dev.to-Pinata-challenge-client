@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar'
 
 export default function Pin() {
   const { id } = useParams()
-  console.log(id)
 
   return (
     <>

@@ -1,0 +1,39 @@
+a.pin {
+  position: relative;
+  border-radius: 12px;
+  height: 400px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  button {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+  }
+
+  &:hover {
+    opacity: 90%;
+
+    button {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+}
