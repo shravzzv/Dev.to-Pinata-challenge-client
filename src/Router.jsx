@@ -36,7 +36,12 @@ export default function Router() {
     },
     {
       path: 'dashboard/profile',
-      element: <Profile isAuthenticated={isAuthenticated} />,
+      element: (
+        <Profile
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+        />
+      ),
     },
     {
       path: 'dashboard/pin/:id',
