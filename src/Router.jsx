@@ -23,19 +23,19 @@ export default function Router() {
     },
     {
       path: '/dashboard',
-      element: <Dashboard />,
+      element: <Dashboard isAuthenticated={isAuthenticated} />,
     },
     {
       path: '/dashboard/create',
-      element: <Create />,
+      element: <Create isAuthenticated={isAuthenticated} />,
     },
     {
       path: 'dashboard/search',
-      element: <Search />,
+      element: <Search isAuthenticated={isAuthenticated} />,
     },
     {
       path: 'dashboard/profile',
-      element: <Profile />,
+      element: <Profile isAuthenticated={isAuthenticated} />,
     },
     {
       path: '*',
