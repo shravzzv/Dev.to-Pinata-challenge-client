@@ -33,6 +33,7 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
     )
 
     localStorage.setItem('token', res.data.token)
+    localStorage.setItem('userId', res.data.userId)
     setIsAuthenticated(true)
     navigate('/dashboard')
   }
@@ -46,6 +47,7 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
     )
 
     localStorage.setItem('token', res.data.token)
+    localStorage.setItem('userId', res.data.userId)
     setIsAuthenticated(true)
     navigate('/dashboard')
   }
