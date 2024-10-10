@@ -6,6 +6,7 @@ import Create from './pages/Create'
 import Search from './pages/Search'
 import Profile from './pages/Profile'
 import { useState } from 'react'
+import Pin from './pages/Pin'
 
 export default function Router() {
   const token = localStorage.getItem('token')
@@ -36,6 +37,10 @@ export default function Router() {
     {
       path: 'dashboard/profile',
       element: <Profile isAuthenticated={isAuthenticated} />,
+    },
+    {
+      path: 'dashboard/pin/:id',
+      element: <Pin isAuthenticated={isAuthenticated} />,
     },
     {
       path: '*',
