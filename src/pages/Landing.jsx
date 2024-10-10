@@ -1,10 +1,15 @@
 import '../styles/Landing.css'
 import Footer from '../components/Footer'
 import { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
-export default function Landing() {
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  setIsAuthenticated: PropTypes.func,
+}
+export default function Landing({ isAuthenticated, setIsAuthenticated }) {
   const [signUpFormData, setSignUpFormData] = useState({
     email: '',
     password: '',
@@ -28,6 +33,7 @@ export default function Landing() {
     )
 
     localStorage.setItem('token', res.data.token)
+    setIsAuthenticated(true)
     navigate('/dashboard')
   }
 
@@ -40,6 +46,7 @@ export default function Landing() {
     )
 
     localStorage.setItem('token', res.data.token)
+    setIsAuthenticated(true)
     navigate('/dashboard')
   }
 
@@ -57,6 +64,10 @@ export default function Landing() {
       ...signInFormData,
       [name]: value,
     })
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to={'/dashboard'} replace />
   }
 
   return (
