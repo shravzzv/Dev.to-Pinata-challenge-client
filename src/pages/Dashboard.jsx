@@ -39,11 +39,23 @@ export default function Dashboard({ isAuthenticated }) {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return (
+      <>
+        <Navbar />
+        <p>Loading...</p>
+        <Footer />
+      </>
+    )
   }
 
   if (error) {
-    return <p>An error occured while fetching the pins!</p>
+    return (
+      <>
+        <Navbar />
+        <p>An error occured while fetching the data!</p>
+        <Footer />
+      </>
+    )
   }
 
   return (

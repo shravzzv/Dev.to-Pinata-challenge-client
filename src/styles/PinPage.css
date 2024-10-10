@@ -1,0 +1,64 @@
+.pinPage {
+  padding: 12px;
+
+  .imageContainer {
+    height: 400px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+  }
+
+  .texts {
+    text-align: center;
+
+    .user {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+
+      img {
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: red;
+      color: white;
+      padding: 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .pinPage {
+    padding: 40px;
+    display: flex;
+    gap: 20px;
+
+    .imageContainer {
+      height: 650px;
+
+      img {
+        width: 55vw;
+      }
+    }
+
+    .texts {
+      text-align: left;
+    }
+  }
+}
