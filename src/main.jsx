@@ -1,10 +1,11 @@
+import 'normalize.css'
+import './styles/main.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import Router from './Router'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <Router />
+  </StrictMode>
 )
