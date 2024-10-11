@@ -11,6 +11,10 @@
     border-radius: 50%;
     object-fit: cover;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: none;
+    }
   }
 
   button {
