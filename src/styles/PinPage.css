@@ -44,6 +44,31 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    .tags {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      .tag {
+        border-radius: 999px;
+        color: inherit;
+        text-decoration: none;
+        padding: 5px 10px;
+        color: #0969da;
+        background-color: #ddf4ff;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+          background-color: #0969da;
+        }
+      }
+    }
   }
 }
 
@@ -63,6 +88,10 @@
 
     .texts {
       text-align: left;
+
+      .tags {
+        justify-content: flex-start;
+      }
     }
   }
 }

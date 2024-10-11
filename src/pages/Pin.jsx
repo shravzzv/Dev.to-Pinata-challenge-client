@@ -81,6 +81,13 @@ export default function Pin({ isAuthenticated }) {
           </div>
           <p className='title'>{pin.title}</p>
           <p className='desc'>{pin.description}</p>
+          <p className='tags'>
+            {pin.tags.map((tag, idx) => (
+              <span className='tag' key={idx}>
+                {tag}
+              </span>
+            ))}
+          </p>
           <button onClick={handleSave}>Save</button>
         </div>
       </div>
