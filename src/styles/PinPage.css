@@ -23,6 +23,7 @@
     .user {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       margin-top: 12px;
 
@@ -87,6 +88,10 @@
 
     .texts {
       text-align: left;
+
+      .user {
+        justify-content: flex-start;
+      }
 
       .tags {
         justify-content: flex-start;
