@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Pin from '../components/Pin'
 
 Profile.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -15,12 +16,14 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
   const [profile, setProfile] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [createdPins, setCreatedPins] = useState([])
+  const [createdPinsError, setCreatedPinsError] = useState(false)
   const navigate = useNavigate()
+  const userId = localStorage.getItem('userId')
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = localStorage.getItem('userId')
         const res = await axios.get(
           `https://devto-pinata-challenge-server-production.up.railway.app/users/${userId}`
         )
@@ -35,7 +38,23 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
     fetchData()
 
     return () => {}
-  }, [])
+  }, [userId])
+
+  useEffect(() => {
+    const fetchCreatedPins = async () => {
+      try {
+        const res = await axios.get(
+          `https://devto-pinata-challenge-server-production.up.railway.app/pins?user=${userId}`
+        )
+        setCreatedPins(res.data)
+      } catch (error) {
+        setCreatedPinsError(error)
+      }
+    }
+
+    fetchCreatedPins()
+    return () => {}
+  }, [userId])
 
   const handleLogout = () => {
     setIsAuthenticated(false)
@@ -81,8 +100,14 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
         />
         <p>{profile.email}</p>
         <button onClick={handleLogout}>Logout</button>
+        <h2>Created pins</h2>
         <div className='createdPins'>
-          <h2>Created pins</h2>
+          {createdPins?.map((pin) => (
+            <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
+          ))}
+          {createdPinsError && (
+            <p>An error occured while fetching created pins.</p>
+          )}
         </div>
         <div className='savedPins'>
           <h2>Saved pins</h2>

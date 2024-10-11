@@ -29,6 +29,15 @@
       transform: scale(1.1);
     }
   }
+
+  .createdPins {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 8px;
+    padding: 8px;
+    align-self: flex-start;
+  }
 }
 
 @media (min-width: 600px) {
