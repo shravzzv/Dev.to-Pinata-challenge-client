@@ -1,5 +1,8 @@
 nav {
   background-color: var(--surface-container);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 
   ul {
     list-style-type: none;
@@ -12,7 +15,9 @@ nav {
 
     li {
       a {
+        padding: 10px;
         text-decoration: none;
+        box-shadow: none;
         color: inherit;
       }
     }

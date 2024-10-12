@@ -1,0 +1,45 @@
+.profile {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: none;
+    }
+  }
+
+  button {
+    border-radius: 12px;
+    padding: 10px 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 300ms ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .createdPins,
+  .savedPins {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 8px;
+    padding: 8px;
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 600px) {
+}
