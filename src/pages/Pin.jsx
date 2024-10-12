@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import Loader from '../components/Loader'
 
 Pin.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -98,7 +99,9 @@ export default function Pin({ isAuthenticated }) {
     return (
       <>
         <Navbar />
-        <p>Loading...</p>
+        <div className='pinPage'>
+          <Loader />
+        </div>
         <Footer />
       </>
     )
