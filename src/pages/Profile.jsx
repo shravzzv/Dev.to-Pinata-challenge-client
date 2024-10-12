@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pin from '../components/Pin'
+import Loader from '../components/Loader'
 
 Profile.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -85,16 +86,6 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
     return <Navigate to={'/'} replace />
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <p>Loading...</p>
-        <Footer />
-      </>
-    )
-  }
-
   if (error) {
     return (
       <>
@@ -107,6 +98,7 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Navbar />
       <div className='profile'>
         <img
@@ -124,18 +116,30 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
           {createdPins?.map((pin) => (
             <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
           ))}
-          {createdPinsError && (
-            <p>An error occured while fetching created pins.</p>
-          )}
         </div>
+        {createdPins.length === 0 && (
+          <p className='noPins'>There are no created pins.</p>
+        )}
+        {createdPinsError && (
+          <p className='pinsFetchErrorMsg'>
+            An error occured while fetching created pins.
+          </p>
+        )}
 
         <h2>Saved pins</h2>
         <div className='savedPins'>
           {savedPins?.map((pin) => (
             <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
           ))}
-          {savedPinsError && <p>An error occured while fetching saved pins.</p>}
         </div>
+        {savedPins.length === 0 && (
+          <p className='noPins'>There are no saved pins.</p>
+        )}
+        {savedPinsError && (
+          <p className='pinsFetchErrorMsg'>
+            An error occured while fetching saved pins.
+          </p>
+        )}
       </div>
       <Footer />
     </>

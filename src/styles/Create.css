@@ -21,7 +21,7 @@ form.create {
     display: block;
     margin: auto;
 
-    &:hover {
+    &:hover:is:not([disabled]) {
       transform: scale(1.1);
     }
   }

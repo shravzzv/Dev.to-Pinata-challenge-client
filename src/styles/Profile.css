@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  min-height: 100vh;
 
   img {
     width: 200px;
@@ -38,6 +39,12 @@
     grid-gap: 8px;
     padding: 8px;
     align-self: flex-start;
+  }
+
+  .noPins,
+  .pinsFetchErrorMsg {
+    text-align: center;
+    margin: 0;
   }
 }
 

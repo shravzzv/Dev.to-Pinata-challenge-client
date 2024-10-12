@@ -1,5 +1,6 @@
 .pinPage {
   padding: 12px;
+  min-height: 100vh;
 
   .imageContainer {
     height: 400px;
