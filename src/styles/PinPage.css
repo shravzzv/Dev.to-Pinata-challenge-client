@@ -82,7 +82,7 @@
       height: 650px;
 
       img {
-        width: 55vw;
+        min-width: 55vw;
       }
     }
 
