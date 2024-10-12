@@ -72,6 +72,21 @@ export default function Pin({ isAuthenticated }) {
       } catch (error) {
         setSaveError(error)
       }
+    } else {
+      try {
+        await axios.post(
+          `https://devto-pinata-challenge-server-production.up.railway.app/pins/unsave/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        )
+        setIsSaved(false)
+      } catch (error) {
+        setSaveError(error)
+      }
     }
   }
 
