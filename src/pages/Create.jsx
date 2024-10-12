@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import PropTypes from 'prop-types'
 import { useRef, useState } from 'react'
 import axios from 'axios'
+import Loader from '../components/Loader'
 
 Create.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -16,6 +17,8 @@ export default function Create({ isAuthenticated }) {
     description: '',
     tags: '',
   })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const formRef = useRef(null)
   const navigate = useNavigate()
@@ -31,6 +34,7 @@ export default function Create({ isAuthenticated }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
+      setIsLoading(true)
       const formData = new FormData(formRef.current)
 
       await axios.post(
@@ -45,7 +49,9 @@ export default function Create({ isAuthenticated }) {
       )
       navigate('/')
     } catch (error) {
-      console.log(error)
+      setError(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -53,8 +59,13 @@ export default function Create({ isAuthenticated }) {
     return <Navigate to={'/'} replace />
   }
 
+  if (error) {
+    return <p>An error occured while uploading the pin.</p>
+  }
+
   return (
     <>
+      {isLoading && <Loader />}
       <Navbar />
       <form
         className='create'
@@ -71,7 +82,7 @@ export default function Create({ isAuthenticated }) {
             value={data.title}
             onChange={handleChange}
             required
-            minLength = {3}
+            minLength={3}
           />
         </div>
 

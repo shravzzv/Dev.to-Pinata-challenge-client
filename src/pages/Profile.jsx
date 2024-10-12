@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pin from '../components/Pin'
+import Loader from '../components/Loader'
 
 Profile.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -85,16 +86,6 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
     return <Navigate to={'/'} replace />
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <p>Loading...</p>
-        <Footer />
-      </>
-    )
-  }
-
   if (error) {
     return (
       <>
@@ -107,6 +98,7 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Navbar />
       <div className='profile'>
         <img

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pin from '../components/Pin'
+import Loader from '../components/Loader'
 
 Dashboard.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -38,16 +39,6 @@ export default function Dashboard({ isAuthenticated }) {
     return <Navigate to={'/'} replace />
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <p>Loading...</p>
-        <Footer />
-      </>
-    )
-  }
-
   if (error) {
     return (
       <>
@@ -60,6 +51,7 @@ export default function Dashboard({ isAuthenticated }) {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Navbar />
       <div className='dashboard'>
         {pins.map((pin) => (

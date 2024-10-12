@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pin from '../components/Pin'
 import { useSearchParams } from 'react-router-dom'
+import Loader from '../components/Loader'
 
 Search.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -75,16 +76,6 @@ export default function Search({ isAuthenticated }) {
     return <Navigate to={'/'} replace />
   }
 
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <p>Loading...</p>
-        <Footer />
-      </>
-    )
-  }
-
   if (error) {
     return (
       <>
@@ -97,6 +88,7 @@ export default function Search({ isAuthenticated }) {
 
   return (
     <>
+      {isLoading && <Loader />}
       <Navbar />
       <div className='search'>
         <form onSubmit={handleSubmit}>
