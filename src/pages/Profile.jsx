@@ -18,6 +18,8 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
   const [error, setError] = useState(false)
   const [createdPins, setCreatedPins] = useState([])
   const [createdPinsError, setCreatedPinsError] = useState(false)
+  const [savedPins, setSavedPins] = useState([])
+  const [savedPinsError, setSavedPinsError] = useState(false)
   const navigate = useNavigate()
   const userId = localStorage.getItem('userId')
 
@@ -53,6 +55,22 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
     }
 
     fetchCreatedPins()
+    return () => {}
+  }, [userId])
+
+  useEffect(() => {
+    const fetchSavedPins = async () => {
+      try {
+        const res = await axios.get(
+          `https://devto-pinata-challenge-server-production.up.railway.app/users/${userId}`
+        )
+        setSavedPins(res.data.savedPins)
+      } catch (error) {
+        setSavedPinsError(error)
+      }
+    }
+
+    fetchSavedPins()
     return () => {}
   }, [userId])
 
@@ -100,6 +118,7 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
         />
         <p>{profile.email}</p>
         <button onClick={handleLogout}>Logout</button>
+
         <h2>Created pins</h2>
         <div className='createdPins'>
           {createdPins?.map((pin) => (
@@ -109,8 +128,13 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
             <p>An error occured while fetching created pins.</p>
           )}
         </div>
+
+        <h2>Saved pins</h2>
         <div className='savedPins'>
-          <h2>Saved pins</h2>
+          {savedPins?.map((pin) => (
+            <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
+          ))}
+          {savedPinsError && <p>An error occured while fetching saved pins.</p>}
         </div>
       </div>
       <Footer />
