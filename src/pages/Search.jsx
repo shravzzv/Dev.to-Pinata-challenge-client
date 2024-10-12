@@ -3,9 +3,10 @@ import { Navigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Pin from '../components/Pin'
+import { useSearchParams } from 'react-router-dom'
 
 Search.propTypes = {
   isAuthenticated: PropTypes.bool,
@@ -16,6 +17,38 @@ export default function Search({ isAuthenticated }) {
   const [searchResults, setSearchResults] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [searchParams] = useSearchParams()
+  const tag = searchParams.get('tag')
+
+  useEffect(() => {
+    if (tag) {
+      setSearchQuery(tag)
+
+      const fetchData = async () => {
+        try {
+          setIsLoading(true)
+          const res = await axios.post(
+            'https://devto-pinata-challenge-server-production.up.railway.app/pins/search',
+            { searchQuery: tag },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            }
+          )
+          setSearchResults(res.data)
+        } catch (error) {
+          setError(error)
+        } finally {
+          setIsLoading(false)
+        }
+      }
+
+      fetchData()
+    }
+
+    return () => {}
+  }, [tag])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

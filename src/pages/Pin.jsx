@@ -1,5 +1,5 @@
 import '../styles/PinPage.css'
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import { useEffect, useState } from 'react'
@@ -83,9 +83,13 @@ export default function Pin({ isAuthenticated }) {
           <p className='desc'>{pin.description}</p>
           <p className='tags'>
             {pin.tags.map((tag, idx) => (
-              <span className='tag' key={idx}>
+              <Link
+                to={`/dashboard/search?tag=${tag}`}
+                className='tag'
+                key={idx}
+              >
                 {tag}
-              </span>
+              </Link>
             ))}
           </p>
           <button onClick={handleSave}>Save</button>
