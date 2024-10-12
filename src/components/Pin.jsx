@@ -7,14 +7,10 @@ Pin.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
 }
-export default function Pin({ url, title, id }) {
-  const handleSave = (e) => {
-    e.preventDefault()
-  }
 
+export default function Pin({ url, title, id }) {
   return (
     <Link to={`/dashboard/pin/${id}`} className='pin'>
-      <button onClick={handleSave}>Save</button>
       <img src={url} alt={title} />
     </Link>
   )
