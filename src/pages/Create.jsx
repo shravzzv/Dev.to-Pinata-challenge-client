@@ -70,6 +70,8 @@ export default function Create({ isAuthenticated }) {
             id='title'
             value={data.title}
             onChange={handleChange}
+            required
+            minLength = {3}
           />
         </div>
 
@@ -99,7 +101,7 @@ export default function Create({ isAuthenticated }) {
 
         <div className='formControl'>
           <label htmlFor='file'>File:*</label>
-          <input type='file' name='file' id='file' />
+          <input type='file' name='file' id='file' required />
         </div>
 
         <button type='submit'>Submit</button>
