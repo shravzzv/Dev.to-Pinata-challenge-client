@@ -19,6 +19,7 @@ export default function Create({ isAuthenticated }) {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
+  const [disableSubmit, setDisableSubmit] = useState(false)
 
   const formRef = useRef(null)
   const navigate = useNavigate()
@@ -35,6 +36,7 @@ export default function Create({ isAuthenticated }) {
     try {
       e.preventDefault()
       setIsLoading(true)
+      setDisableSubmit(true)
       const formData = new FormData(formRef.current)
 
       await axios.post(
@@ -115,7 +117,9 @@ export default function Create({ isAuthenticated }) {
           <input type='file' name='file' id='file' required />
         </div>
 
-        <button type='submit'>Submit</button>
+        <button type='submit' disabled={disableSubmit}>
+          Submit
+        </button>
       </form>
       <Footer />
     </>
