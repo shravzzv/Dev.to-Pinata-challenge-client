@@ -83,6 +83,7 @@
 
       img {
         min-width: 55vw;
+        max-width: 60vw;
       }
     }
 
