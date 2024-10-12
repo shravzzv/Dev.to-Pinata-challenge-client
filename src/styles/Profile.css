@@ -39,6 +39,12 @@
     padding: 8px;
     align-self: flex-start;
   }
+
+  .noPins,
+  .pinsFetchErrorMsg {
+    text-align: center;
+    margin: 0;
+  }
 }
 
 @media (min-width: 600px) {

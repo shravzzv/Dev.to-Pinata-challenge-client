@@ -124,18 +124,30 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
           {createdPins?.map((pin) => (
             <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
           ))}
-          {createdPinsError && (
-            <p>An error occured while fetching created pins.</p>
-          )}
         </div>
+        {createdPins.length === 0 && (
+          <p className='noPins'>There are no created pins.</p>
+        )}
+        {createdPinsError && (
+          <p className='pinsFetchErrorMsg'>
+            An error occured while fetching created pins.
+          </p>
+        )}
 
         <h2>Saved pins</h2>
         <div className='savedPins'>
           {savedPins?.map((pin) => (
             <Pin key={pin._id} title={pin.title} url={pin.url} id={pin._id} />
           ))}
-          {savedPinsError && <p>An error occured while fetching saved pins.</p>}
         </div>
+        {savedPins.length === 0 && (
+          <p className='noPins'>There are no saved pins.</p>
+        )}
+        {savedPinsError && (
+          <p className='pinsFetchErrorMsg'>
+            An error occured while fetching saved pins.
+          </p>
+        )}
       </div>
       <Footer />
     </>
