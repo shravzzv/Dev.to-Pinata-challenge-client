@@ -12,10 +12,13 @@ Pin.propTypes = {
 
 export default function Pin({ isAuthenticated }) {
   const { id } = useParams()
+  const userId = localStorage.getItem('userId')
 
   const [pin, setPin] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [isSaved, setIsSaved] = useState(false)
+  const [saveError, setSaveError] = useState(false)
 
   useEffect(() => {
     const fetchPin = async () => {
@@ -35,7 +38,42 @@ export default function Pin({ isAuthenticated }) {
     return () => {}
   }, [id])
 
-  const handleSave = () => {}
+  useEffect(() => {
+    const fetchSavedPins = async () => {
+      try {
+        const res = await axios.get(
+          `https://devto-pinata-challenge-server-production.up.railway.app/users/${userId}`
+        )
+        if (res.data.savedPins.some((pin) => pin._id === id)) {
+          setIsSaved(true)
+        }
+      } catch (error) {
+        setError(error)
+      }
+    }
+
+    fetchSavedPins()
+    return () => {}
+  }, [userId, id])
+
+  const handleSave = async () => {
+    if (!isSaved) {
+      try {
+        await axios.post(
+          `https://devto-pinata-challenge-server-production.up.railway.app/pins/save/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+        )
+        setIsSaved(true)
+      } catch (error) {
+        setSaveError(error)
+      }
+    }
+  }
 
   if (!isAuthenticated) {
     return <Navigate to={'/'} replace />
@@ -92,7 +130,8 @@ export default function Pin({ isAuthenticated }) {
               </Link>
             ))}
           </p>
-          <button onClick={handleSave}>Save</button>
+          <button onClick={handleSave}>{isSaved ? 'Unsave' : 'Save'}</button>
+          {saveError && <p>An error occured while saving the pin.</p>}
         </div>
       </div>
       <Footer />
