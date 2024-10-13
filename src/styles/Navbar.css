@@ -11,14 +11,25 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 12px;
+    padding: 5px 0;
 
     li {
       a {
-        padding: 10px;
         text-decoration: none;
         box-shadow: none;
         color: inherit;
+        display: inline-block;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-weight: 500;
+        color: var(--on-surface-container);
+        transition: all 300ms ease;
+
+        &.active,
+        &:hover {
+          background-color: var(--on-surface);
+          color: var(--surface);
+        }
       }
     }
   }
