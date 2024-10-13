@@ -107,6 +107,7 @@ export default function Profile({ isAuthenticated, setIsAuthenticated }) {
             'https://res.cloudinary.com/dmt9s5xlh/image/upload/v1716392632/andrew-ridley-jR4Zf-riEjI-unsplash_dszwlz.jpg'
           }
           alt='profile'
+          className='scale-in-center'
         />
         <p>{profile.email}</p>
         <button onClick={handleLogout}>Logout</button>

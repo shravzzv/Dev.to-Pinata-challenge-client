@@ -70,7 +70,7 @@ export default function Create({ isAuthenticated }) {
       {isLoading && <Loader />}
       <Navbar />
       <form
-        className='create'
+        className='create scale-in-center'
         onSubmit={handleSubmit}
         encType='multipart/form-data'
         ref={formRef}

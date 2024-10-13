@@ -2,7 +2,6 @@
   .hero {
     padding: 20px;
     background-color: black;
-    /* background-image: url(./images/heroBG.webp); */
     background-image: url('https://res.cloudinary.com/dmt9s5xlh/image/upload/v1728728085/heroBG_jw6069.jpg');
     background-size: cover;
     background-position: center;
@@ -75,7 +74,7 @@
           transition: transform 300ms ease;
 
           &:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) !important;
           }
         }
       }

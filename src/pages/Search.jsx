@@ -90,8 +90,8 @@ export default function Search({ isAuthenticated }) {
     <>
       {isLoading && <Loader />}
       <Navbar />
-      <div className='search'>
-        <form onSubmit={handleSubmit}>
+      <div className='search '>
+        <form onSubmit={handleSubmit} className='scale-in-center'>
           <div className='formControl'>
             <input
               type='search'
@@ -107,7 +107,9 @@ export default function Search({ isAuthenticated }) {
           </div>
         </form>
         {searchResults.length === 0 && (
-          <span className='noResults'>There are no results yet.</span>
+          <span className='noResults scale-in-center'>
+            There are no results yet.
+          </span>
         )}
         <div className='results'>
           {searchResults.length > 0 &&

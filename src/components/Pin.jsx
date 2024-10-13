@@ -10,7 +10,7 @@ Pin.propTypes = {
 
 export default function Pin({ url, title, id }) {
   return (
-    <Link to={`/dashboard/pin/${id}`} className='pin'>
+    <Link to={`/dashboard/pin/${id}`} className='pin flip-in-hor-bottom'>
       <img src={url} alt={title} />
     </Link>
   )
