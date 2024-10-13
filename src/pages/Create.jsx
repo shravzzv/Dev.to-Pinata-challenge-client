@@ -114,7 +114,7 @@ export default function Create({ isAuthenticated }) {
 
         <div className='formControl'>
           <label htmlFor='file'>File:*</label>
-          <input type='file' name='file' id='file' required />
+          <input type='file' name='file' id='file' accept='image/*' required />
         </div>
 
         <button type='submit' disabled={disableSubmit}>
