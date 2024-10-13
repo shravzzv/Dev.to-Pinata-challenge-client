@@ -31,7 +31,7 @@ a.pin {
   }
 
   &:hover {
-    opacity: 90%;
+    opacity: 90% !important;
 
     button {
       display: block;
