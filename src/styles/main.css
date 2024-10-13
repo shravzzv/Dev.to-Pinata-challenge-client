@@ -44,4 +44,11 @@ form {
     border: none;
     resize: vertical;
   }
+
+  .error {
+    display: block;
+    color: var(--error);
+    font-size: 14px;
+    text-align: right;
+  }
 }
