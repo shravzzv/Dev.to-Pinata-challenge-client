@@ -29,6 +29,7 @@ nav {
         &:hover {
           background-color: var(--on-surface);
           color: var(--surface);
+          font-weight: 600;
         }
       }
     }
