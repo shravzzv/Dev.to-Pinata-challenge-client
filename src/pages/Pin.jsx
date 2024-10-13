@@ -121,10 +121,10 @@ export default function Pin({ isAuthenticated }) {
     <>
       <Navbar />
       <div className='pinPage'>
-        <div className='imageContainer'>
+        <div className='imageContainer swing-in-bottom-fwd'>
           <img src={pin.url} alt={pin.title} />
         </div>
-        <div className='texts'>
+        <div className='texts scale-in-center'>
           <div className='user'>
             <img
               src={
