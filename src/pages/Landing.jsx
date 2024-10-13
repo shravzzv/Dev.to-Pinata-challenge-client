@@ -9,16 +9,19 @@ Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
   setIsAuthenticated: PropTypes.func,
 }
+
 export default function Landing({ isAuthenticated, setIsAuthenticated }) {
   const [signUpFormData, setSignUpFormData] = useState({
     email: '',
     password: '',
   })
-
   const [signInFormData, setSignInFormData] = useState({
     email: '',
     password: '',
   })
+  const [isEmailErrorSignUp, setIsEmailErrorSignUp] = useState(false)
+  const [isEmailErrorSignIn, setIsEmailErrorSignIn] = useState(false)
+  const [isPasswordErrorSignIn, setIsPasswordErrorSignIn] = useState(false)
 
   const navigate = useNavigate()
   const signUpDialogRef = useRef(null)
@@ -26,30 +29,43 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
 
   const handleSignUpFormSubmit = async (e) => {
     e.preventDefault()
+    try {
+      setIsEmailErrorSignUp(false)
+      const res = await axios.post(
+        'https://devto-pinata-challenge-server-production.up.railway.app/users/signup',
+        signUpFormData
+      )
 
-    const res = await axios.post(
-      'https://devto-pinata-challenge-server-production.up.railway.app/users/signup',
-      signUpFormData
-    )
-
-    localStorage.setItem('token', res.data.token)
-    localStorage.setItem('userId', res.data.userId)
-    setIsAuthenticated(true)
-    navigate('/dashboard')
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userId', res.data.userId)
+      setIsAuthenticated(true)
+      navigate('/dashboard')
+    } catch (error) {
+      if (error?.response?.data?.some((err) => err.path === 'email'))
+        setIsEmailErrorSignUp(true)
+    }
   }
 
   const handleSignInFormSubmit = async (e) => {
     e.preventDefault()
+    try {
+      setIsEmailErrorSignIn(false)
+      setIsPasswordErrorSignIn(false)
+      const res = await axios.post(
+        'https://devto-pinata-challenge-server-production.up.railway.app/users/signin',
+        signInFormData
+      )
 
-    const res = await axios.post(
-      'https://devto-pinata-challenge-server-production.up.railway.app/users/signin',
-      signInFormData
-    )
-
-    localStorage.setItem('token', res.data.token)
-    localStorage.setItem('userId', res.data.userId)
-    setIsAuthenticated(true)
-    navigate('/dashboard')
+      localStorage.setItem('token', res.data.token)
+      localStorage.setItem('userId', res.data.userId)
+      setIsAuthenticated(true)
+      navigate('/dashboard')
+    } catch (error) {
+      if (error?.response?.data?.some((err) => err.path === 'email'))
+        setIsEmailErrorSignIn(true)
+      if (error?.response?.data?.some((err) => err.path === 'password'))
+        setIsPasswordErrorSignIn(true)
+    }
   }
 
   const handleSignUpFormDataChange = (e) => {
@@ -111,6 +127,9 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
               onChange={handleSignUpFormDataChange}
               required
             />
+            {isEmailErrorSignUp && (
+              <span className='error'>Email already exists.</span>
+            )}
           </div>
 
           <div className='formControl'>
@@ -151,6 +170,9 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
               onChange={handleSignInFormDataChange}
               required
             />
+            {isEmailErrorSignIn && (
+              <span className='error'>Email doesn&apos;t exist.</span>
+            )}
           </div>
 
           <div className='formControl'>
@@ -164,6 +186,9 @@ export default function Landing({ isAuthenticated, setIsAuthenticated }) {
               required
               minLength={8}
             />
+            {isPasswordErrorSignIn && (
+              <span className='error'>Incorrect password.</span>
+            )}
           </div>
 
           <div className='buttons'>
