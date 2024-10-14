@@ -85,6 +85,7 @@ export default function Create({ isAuthenticated }) {
             onChange={handleChange}
             required
             minLength={3}
+            placeholder="In a few words, what's this?"
           />
         </div>
 
