@@ -85,6 +85,7 @@ export default function Create({ isAuthenticated }) {
             onChange={handleChange}
             required
             minLength={3}
+            placeholder="In a few words, what's this?"
           />
         </div>
 
@@ -106,7 +107,7 @@ export default function Create({ isAuthenticated }) {
             type='text'
             name='tags'
             id='tags'
-            placeholder='tag1 ,tag2, tag3'
+            placeholder='tag1, tag2, tag3'
             value={data.tags}
             onChange={handleChange}
           />
